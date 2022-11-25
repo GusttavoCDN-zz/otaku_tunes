@@ -16,16 +16,19 @@
     "test": "jest",
     "lint": "eslint src --max-warnings=0",
     "db:migrate": "node ./src/db/migrate.js",
-    "server": "json-server ./src/db/db.json",
+    "server": "json-server --watch ./src/db/db.json --routes ./src/db/routes.json",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "axios": "^1.2.0",
     "framer-motion": "^7.6.12",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
+    "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

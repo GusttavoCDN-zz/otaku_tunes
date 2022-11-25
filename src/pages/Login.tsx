@@ -1,10 +1,28 @@
 import { Button, Flex, Input, Stack } from '@chakra-ui/react'
 import { Logo } from 'assets/Logo'
-import { useState } from 'react'
+import { UserContext } from 'contexts/UserContext'
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { httpRequest } from 'services/api'
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { setUser } = useContext(UserContext)
+
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+
+    const { data } = await httpRequest.get(`/users/${email}`)
+
+    if (data[0].password === password) {
+      localStorage.setItem('user', JSON.stringify(data[0]))
+      setUser(data[0])
+      navigate('/home')
+    } else console.log('Invalid credentials')
+  }
 
   return (
     <Flex
@@ -18,6 +36,7 @@ export function Login() {
 
       <Flex
         as="form"
+        onSubmit={handleSubmit}
         mt={12}
         w={'697px'}
         border="1px solid"
@@ -41,8 +60,8 @@ export function Login() {
             onChange={({ target }) => setEmail(target.value)}
           />
           <Input
-            type={'email'}
-            name="email"
+            type={'password'}
+            name="password"
             borderColor={'gray.300'}
             focusBorderColor="gray.400"
             _hover={{
