@@ -1,7 +1,11 @@
 import { Button, Flex, Input, Stack } from '@chakra-ui/react'
 import { Logo } from 'assets/Logo'
+import { useState } from 'react'
 
 export function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
     <Flex
       align={'center'}
@@ -27,12 +31,14 @@ export function Login() {
           <Input
             type={'email'}
             name="email"
+            value={email}
             borderColor={'gray.300'}
             focusBorderColor="gray.400"
             _hover={{
               borderColor: 'gray.400'
             }}
             placeholder={'E-mail'}
+            onChange={({ target }) => setEmail(target.value)}
           />
           <Input
             type={'email'}
@@ -43,6 +49,8 @@ export function Login() {
               borderColor: 'gray.400'
             }}
             placeholder={'Password'}
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
           />
         </Stack>
         <Button type="submit" colorScheme="linkedin" mt={8}>
