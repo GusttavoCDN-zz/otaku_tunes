@@ -1,4 +1,4 @@
-import { Box, Flex, Link, Text } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Link, Text } from '@chakra-ui/react'
 import { HeaderLogo } from 'assets/Logo'
 import { useUser } from 'contexts/UserContext'
 
@@ -19,9 +19,16 @@ export function Header() {
       >
         <HeaderLogo w={200} h={125} pb={8} />
 
-        <Text color={'white'} fontSize={'lg'} fontWeight="hairline">
-          {user.email}
-        </Text>
+        <Flex align="center" gap={4}>
+          <Text color={'white'} fontSize={'lg'} fontWeight="hairline">
+            {user.email}
+          </Text>
+          <Avatar
+            size="lg"
+            name={user.email}
+            src="https://github.com/gusttavocdn.png"
+          />
+        </Flex>
       </Flex>
 
       <Flex justify={'space-around'}>
