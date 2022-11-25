@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Flex,
   Heading,
@@ -8,12 +7,14 @@ import {
   Input,
   SimpleGrid,
   Stack,
-  Text
+  Text,
+  Link as ChakraLink
 } from '@chakra-ui/react'
 import { Header } from 'components/Header'
 import { useAlbums } from 'contexts/AlbumsContext'
 import { useState } from 'react'
 import { RiSearchLine } from 'react-icons/ri'
+import { Link as RouterLink } from 'react-router-dom'
 
 export function Home() {
   const [artist, setArtist] = useState('')
@@ -72,7 +73,9 @@ export function Home() {
           </Heading>
           <SimpleGrid minChildWidth="240px" gap={4}>
             {albums.map((album, i) => (
-              <Box
+              <ChakraLink
+                to={`/album/${album.collectionId}`}
+                as={RouterLink}
                 key={i}
                 w="240px"
                 borderRadius={'md'}
@@ -97,7 +100,7 @@ export function Home() {
                     {album.artistName}
                   </Text>
                 </Stack>
-              </Box>
+              </ChakraLink>
             ))}
           </SimpleGrid>
         </Flex>
