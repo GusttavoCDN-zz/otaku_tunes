@@ -1,10 +1,9 @@
-import { Box, Flex, Link, Stack, Text } from '@chakra-ui/react'
+import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import { HeaderLogo } from 'assets/Logo'
-import { UserContext } from 'contexts/UserContext'
-import { useContext } from 'react'
+import { useUser } from 'contexts/UserContext'
 
 export function Header() {
-  const { user } = useContext(UserContext)
+  const { user } = useUser()
 
   return (
     <Flex flexDir="column" w="inherit">

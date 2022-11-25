@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 type User = {
   id: number
@@ -13,7 +13,8 @@ type UserContextData = {
   user: User
   setUser: React.Dispatch<React.SetStateAction<User>>
 }
-export const UserContext = createContext({} as UserContextData)
+
+const UserContext = createContext({} as UserContextData)
 
 // A way to persist the user when refresh the page
 const storageUser = JSON.parse(
@@ -28,4 +29,9 @@ export function UserProvider({ children }: UserProviderProps) {
       {children}
     </UserContext.Provider>
   )
+}
+
+export const useUser = () => {
+  const context = useContext(UserContext)
+  return context
 }

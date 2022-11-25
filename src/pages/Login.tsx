@@ -1,14 +1,14 @@
 import { Button, Flex, Input, Stack } from '@chakra-ui/react'
 import { Logo } from 'assets/Logo'
-import { UserContext } from 'contexts/UserContext'
-import { useContext, useState } from 'react'
+import { useUser } from 'contexts/UserContext'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { httpRequest } from 'services/api'
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { setUser } = useContext(UserContext)
+  const { setUser } = useUser()
 
   const navigate = useNavigate()
 
