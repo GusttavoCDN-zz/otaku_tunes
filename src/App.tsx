@@ -1,3 +1,5 @@
+import { Login } from 'pages/Login'
+
 export function App() {
-  return <div>app</div>
+  return <Login />
 }
