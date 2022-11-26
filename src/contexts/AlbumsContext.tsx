@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useCallback, useContext, useState } from 'react'
 import { httpRequest } from 'services/api'
 
 type Album = {
@@ -46,14 +46,14 @@ export function AlbumsProvider({ children }: AlbumProviderProps) {
     setAlbums(data.results)
   }
 
-  const getCurrentAlbumMusics = async (albumId: string) => {
+  const getCurrentAlbumMusics = useCallback(async (albumId: string) => {
     const musicAPI = `https://itunes.apple.com/lookup?id=${albumId}&entity=song`
     const { data } = await httpRequest.get<{ results: Music[] }>(musicAPI)
 
     const musics = data.results.filter((music) => music.kind)
 
     setCurrentAlbumMusics(musics)
-  }
+  }, [])
 
   return (
     <AlbumsContext.Provider

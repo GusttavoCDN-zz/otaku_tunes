@@ -11,7 +11,7 @@ export function Album() {
 
   useEffect(() => {
     getCurrentAlbumMusics(albumId)
-  }, [])
+  }, [getCurrentAlbumMusics, albumId])
 
   return (
     <Flex w="100vw" flexDir={'column'}>
