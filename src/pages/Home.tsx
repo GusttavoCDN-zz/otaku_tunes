@@ -1,7 +1,6 @@
 import {
   Button,
   Flex,
-  Heading,
   Icon,
   Image,
   Input,
@@ -23,7 +22,6 @@ export function Home() {
 
   const handleSearch = async () => {
     await fetchAlbums(artist)
-    setArtist('')
   }
 
   return (
@@ -63,14 +61,6 @@ export function Home() {
 
       {albums.length > 0 && (
         <Flex w="inherit" mt={30} p={20} flexDir="column">
-          <Heading
-            as="h2"
-            color="gray.500"
-            fontWeight={'light'}
-            fontStyle="italic"
-          >
-            Resultados de álbuns de Artista X:
-          </Heading>
           <SimpleGrid minChildWidth="240px" gap={4}>
             {albums.map((album, i) => (
               <ChakraLink
@@ -81,6 +71,10 @@ export function Home() {
                 borderRadius={'md'}
                 mt={10}
                 boxShadow="2xl"
+                _hover={{
+                  transform: 'scale(1.05)'
+                }}
+                transition="ease 0.3s"
               >
                 <Stack spacing={4} textAlign="center">
                   <Image
