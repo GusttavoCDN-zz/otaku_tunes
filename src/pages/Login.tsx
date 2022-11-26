@@ -1,27 +1,20 @@
 import { Button, Flex, Input, Stack } from '@chakra-ui/react'
 import { Logo } from 'assets/Logo'
-import { useUser } from 'contexts/UserContext'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { httpRequest } from 'services/api'
 
 export function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const { setUser } = useUser()
+  const [name, setName] = useState('')
+  const [, setUsername] = useLocalStorage('user')
 
   const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
-    const { data } = await httpRequest.get(`/users/${email}`)
-
-    if (data[0].password === password) {
-      localStorage.setItem('user', JSON.stringify(data[0]))
-      setUser(data[0])
-      navigate('/home')
-    } else console.log('Invalid credentials')
+    setUsername(name)
+    navigate('/home')
   }
 
   return (
@@ -38,7 +31,7 @@ export function Login() {
         as="form"
         onSubmit={handleSubmit}
         mt={12}
-        w={'697px'}
+        w={['300px', '300px', '697px']}
         border="1px solid"
         borderColor="gray.100"
         borderRadius="10px"
@@ -48,32 +41,20 @@ export function Login() {
       >
         <Stack>
           <Input
-            type={'email'}
-            name="email"
-            value={email}
+            type={'text'}
+            name="name"
+            value={name}
             borderColor={'gray.300'}
             focusBorderColor="gray.400"
             _hover={{
               borderColor: 'gray.400'
             }}
-            placeholder={'E-mail'}
-            onChange={({ target }) => setEmail(target.value)}
-          />
-          <Input
-            type={'password'}
-            name="password"
-            borderColor={'gray.300'}
-            focusBorderColor="gray.400"
-            _hover={{
-              borderColor: 'gray.400'
-            }}
-            placeholder={'Password'}
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
+            placeholder={'Write your name'}
+            onChange={({ target }) => setName(target.value)}
           />
         </Stack>
         <Button type="submit" colorScheme="linkedin" mt={8}>
-          Entrar
+          Log in
         </Button>
       </Flex>
     </Flex>
