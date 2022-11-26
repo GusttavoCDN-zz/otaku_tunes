@@ -1,9 +1,9 @@
 import { Avatar, Box, Flex, Link, Text } from '@chakra-ui/react'
 import { HeaderLogo } from 'assets/Logo'
-import { useUser } from 'contexts/UserContext'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 
 export function Header() {
-  const { user } = useUser()
+  const [username] = useLocalStorage<string>('user')
 
   return (
     <Flex flexDir="column" w="inherit">
@@ -21,13 +21,9 @@ export function Header() {
 
         <Flex align="center" gap={4}>
           <Text color={'white'} fontSize={'lg'} fontWeight="hairline">
-            {user.email}
+            {username}
           </Text>
-          <Avatar
-            size="lg"
-            name={user.email}
-            src="https://github.com/gusttavocdn.png"
-          />
+          <Avatar size="lg" name={username} />
         </Flex>
       </Flex>
 

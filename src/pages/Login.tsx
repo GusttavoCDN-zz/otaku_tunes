@@ -1,20 +1,18 @@
 import { Button, Flex, Input, Stack } from '@chakra-ui/react'
 import { Logo } from 'assets/Logo'
 import { useLocalStorage } from 'hooks/useLocalStorage'
-import { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export function Login() {
-  const [name, setName] = useState('')
-  const [, setUsername] = useLocalStorage('user')
+  const [username, setUsername] = useLocalStorage<string>('user')
 
   const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
-    setUsername(name)
-    navigate('/home')
+    if (username.length > 4) navigate('/home')
   }
 
   return (
@@ -43,14 +41,14 @@ export function Login() {
           <Input
             type={'text'}
             name="name"
-            value={name}
+            value={username}
             borderColor={'gray.300'}
             focusBorderColor="gray.400"
             _hover={{
               borderColor: 'gray.400'
             }}
             placeholder={'Write your name'}
-            onChange={({ target }) => setName(target.value)}
+            onChange={({ target }) => setUsername(target.value)}
           />
         </Stack>
         <Button type="submit" colorScheme="linkedin" mt={8}>
