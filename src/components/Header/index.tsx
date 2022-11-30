@@ -3,7 +3,7 @@ import { HeaderLogo } from 'assets/Logo'
 import { useLocalStorage } from 'hooks/useLocalStorage'
 import { NavBar } from './NavBar'
 
-export function Header() {
+export default function Header() {
   const [username] = useLocalStorage<string>('user')
 
   return (

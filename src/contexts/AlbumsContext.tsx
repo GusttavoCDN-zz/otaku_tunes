@@ -19,6 +19,7 @@ type Music = {
   trackName: string
   trackId: string
   previewUrl: string
+  artworkUrl100: string
 }
 
 type AlbumProviderProps = {

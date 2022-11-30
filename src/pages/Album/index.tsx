@@ -1,9 +1,10 @@
-import { Flex, Stack, Image, Text, Icon } from '@chakra-ui/react'
-import { Header } from 'components/Header'
+import { Flex, Stack, Image, Text } from '@chakra-ui/react'
+
 import { useAlbums } from 'contexts/AlbumsContext'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { AiOutlineHeart } from 'react-icons/ai'
+import Header from 'components/Header'
+import { MusicItem } from './MusicItem'
 
 export function Album() {
   const { currentAlbumMusics, getCurrentAlbumMusics, albums } = useAlbums()
@@ -45,24 +46,8 @@ export function Album() {
         </Stack>
 
         <Stack spacing={4} textAlign="left" w="50vw">
-          {currentAlbumMusics.map((music, i) => (
-            <Stack key={i}>
-              <Text fontSize={'2xl'} color={'CaptionText'}>
-                {music.trackName}
-              </Text>
-              <Flex gap={10}>
-                <audio
-                  controls
-                  style={{
-                    width: '80%',
-                    borderRadius: '2.5rem'
-                  }}
-                >
-                  <source src={music.previewUrl} type="audio/mpeg" />
-                </audio>
-                <Icon as={AiOutlineHeart} w="40px" h="40px" />
-              </Flex>
-            </Stack>
+          {currentAlbumMusics.map((music) => (
+            <MusicItem key={music.trackId} {...music} />
           ))}
         </Stack>
       </Stack>

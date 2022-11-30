@@ -9,7 +9,7 @@ import {
   Text,
   Link as ChakraLink
 } from '@chakra-ui/react'
-import { Header } from 'components/Header'
+import Header from 'components/Header'
 import { useAlbums } from 'contexts/AlbumsContext'
 import { useState } from 'react'
 import { RiSearchLine } from 'react-icons/ri'
