@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useState } from 'react'
 import { httpRequest } from 'services/api'
 
-type Album = {
+export type Album = {
   artistId: number
   artistName: string
   collectionId: number
