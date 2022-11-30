@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 
 type FavoriteMusic = {
-  collectionName: string
+  trackName: string
   artworkUrl100: string
   previewUrl: string
 }

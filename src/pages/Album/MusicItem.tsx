@@ -3,13 +3,13 @@ import { useFavoriteMusics } from 'contexts/FavoriteMusicsContext'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
 type MusicItemProps = {
-  collectionName: string
+  trackName: string
   artworkUrl100: string
   previewUrl: string
 }
 
 export function MusicItem({
-  collectionName,
+  trackName,
   previewUrl,
   artworkUrl100
 }: MusicItemProps) {
@@ -23,7 +23,7 @@ export function MusicItem({
   const heart = isFavorite ? AiFillHeart : AiOutlineHeart
 
   const handleClick = () => {
-    const music = { collectionName, previewUrl, artworkUrl100 }
+    const music = { trackName, previewUrl, artworkUrl100 }
     if (isFavorite) removeFavoriteMusic(music)
     else addFavoriteMusic(music)
   }
@@ -31,7 +31,7 @@ export function MusicItem({
   return (
     <Stack>
       <Text fontSize={'2xl'} color={'CaptionText'}>
-        {collectionName}
+        {trackName}
       </Text>
       <Flex gap={10}>
         <audio
